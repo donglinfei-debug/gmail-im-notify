@@ -135,6 +135,10 @@ Add a second Webhook call at the end of `sendToDing()`.
 | DeepSeek API | ~¥0.001/call — 1 call/min ≈ ¥1/day |
 | DingTalk Robot | **Free** — max 20 messages/min |
 
+## Contact
+
+- **Email**: donglinfei@gmail.com
+
 ## License
 
 MIT © [Ryan Dong](https://github.com/donglinfei-debug)

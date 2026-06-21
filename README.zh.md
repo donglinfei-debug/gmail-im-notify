@@ -137,6 +137,10 @@ var query = "label:important after:" + …;
 | DeepSeek API | 约 0.001 元/次 — 每分钟一次 = 每天约 1 元 |
 | 钉钉机器人 | **免费** — 每分钟最多发 20 条 |
 
+## 联系方式
+
+- **邮箱**: donglinfei@gmail.com
+
 ## License
 
 MIT © [Ryan Dong](https://github.com/donglinfei-debug)
