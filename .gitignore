@@ -1,0 +1,33 @@
+# 私密信息 — 绝对不能提交到 GitHub
+config_private.json
+.env
+*.env
+credentials.json
+client_secret*.json
+service-account*.json
+
+# 本机测试文件
+test_*.gs
+_test_*
+*.tmp
+
+# 编辑器/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude 会话
+.claude/
+
+# 即用版（含真实凭据，严禁提交！）
+GmailToDingTalk_ready.gs
+
+# 临时文件
+*.log
