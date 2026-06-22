@@ -1,144 +1,87 @@
-# gmail-im-notify
+<div align="center">
 
-> Get instant notifications when important emails hit your Gmail inbox — powered by AI summaries, delivered to DingTalk (and more IMs in the future).
+# 📬 Gmail IM Notify
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-JavaScript-blue)]()
+**Instant Gmail notifications with AI summaries — delivered to DingTalk (and more IMs coming)**
 
-## Why This Exists
+[![GitHub Stars](https://img.shields.io/github/stars/donglinfei-debug/gmail-im-notify?style=flat-square&logo=github)](https://github.com/donglinfei-debug/gmail-im-notify/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/donglinfei-debug/gmail-im-notify?style=flat-square&logo=github)](https://github.com/donglinfei-debug/gmail-im-notify/issues)
+[![GitHub Forks](https://img.shields.io/github/forks/donglinfei-debug/gmail-im-notify?style=flat-square&logo=github)](https://github.com/donglinfei-debug/gmail-im-notify/forks)
+[![License](https://img.shields.io/github/license/donglinfei-debug/gmail-im-notify?style=flat-square)](LICENSE)
+[![Google Apps Script](https://img.shields.io/badge/GAS-JavaScript-blue.svg?style=flat-square&logo=google)](https://developers.google.com/apps-script)
+[![DeepSeek](https://img.shields.io/badge/AI-DeepSeek-brightgreen.svg?style=flat-square)](https://platform.deepseek.com/)
 
-| Scenario | Pain Point | How This Solves It |
-|----------|------------|-------------------|
-| 🏢 **Busy Professionals** | Checking Gmail constantly is distracting | Get instant push notifications with AI summaries to your team chat |
-| ✈️ **Traveling / On Leave** | Easy to miss important emails | DingTalk (soon more) delivers alerts to your phone immediately |
-| 🔐 **Restricted Networks** | Gmail is slow or inaccessible in some regions | Script runs on Google Cloud, notifications delivered via local IMs |
-| 👨‍👩‍👧 **Team Shared Mailbox** | Nobody wants to refresh the inbox all day | New emails auto-push to the group, everyone stays informed |
+🌏 **Language / 语言**：[🇨🇳 中文](README.zh.md) | [🇬🇧 English](README.md)
 
-## How It Works
-
-```
-New email arrives in Gmail
-        │
-        │  Google Apps Script (checks every minute)
-        │  ─ Runs on Google Cloud, no local PC needed
-        │
-        ├─→ DeepSeek API ──→ AI Summary
-        │                      (1-line summary + details + urgency + to-do)
-        │
-        └─→ DingTalk Webhook ──→ Your phone / desktop
-```
-
-## Quick Start (3 minutes)
-
-### 1. Prerequisites
-
-- A Gmail account
-- A [DeepSeek API Key](https://platform.deepseek.com) (free credits for new users)
-- A DingTalk group robot Webhook ([create guide](https://open.dingtalk.com/document/orgapp/custom-bot))
-
-### 2. Deploy
-
-```
-① Go to https://script.google.com
-② Create a new project, clear default code
-③ Paste the content of main.gs into the editor
-④ Update the CONFIG section with your credentials:
-    - deepseekApiKey    → Your DeepSeek API key
-    - dingtalkWebhook   → Your DingTalk robot Webhook URL
-    - dingtalkSecret    → Your DingTalk signing secret
-⑤ Run the init() function → Authorize → Auto-creates a 1-minute trigger
-⑥ Run the test() function → Check DingTalk group for a notification → Done!
-```
-
-### Config Reference
-
-| Config | Description | How to Get |
-|--------|-------------|-----------|
-| `deepseekApiKey` | DeepSeek API key | [platform.deepseek.com](https://platform.deepseek.com) → API Keys |
-| `deepseekModel` | Model name (default: `deepseek-v4-flash`) | |
-| `dingtalkWebhook` | DingTalk robot Webhook | DingTalk group → Settings → Smart Assistant → Add Robot → Custom |
-| `dingtalkSecret` | HMAC signing secret (starts with `SEC`) | Choose "Signing" security when creating the robot |
-| `checkMinutes` | Check interval in minutes (default: 1) | Adjust based on your needs |
-| `maxPerBatch` | Max emails to process per check (default: 5) | |
-
-### Notification Card Example
-
-```
-## Q2 Quarterly Report Reminder
-
-**From** zhangsan@company.com 📎
-**Time** 06-10 14:30
-**Status** 🔴 Urgent
+</div>
 
 ---
 
-**📝 Summary** Reminder to submit Q2 report by tomorrow
+Get instant notifications when important emails hit your Gmail inbox — powered by AI summaries, delivered to DingTalk (and more IMs in the future). Built with Google Apps Script, zero infrastructure to maintain.
 
-**📄 Details** Manager requires all departments to submit
-Q2 performance reports by tomorrow 17:00. Template attached.
+## 🏗️ Architecture
 
-**📋 Action** Submit Q2 report before tomorrow 17:00
+```mermaid
+flowchart LR
+    subgraph Google["☁️ Google Cloud"]
+        GAS[main.gs · Google Apps Script<br/>每分钟触发 · 增量轮询]
+        GM[Gmail API<br/>in:inbox after:{ts}]
+    end
+    subgraph AI["🧠 AI Layer"]
+        DS[DeepSeek API<br/>结构化摘要]
+    end
+    subgraph Push["📲 Notification"]
+        DT[DingTalk Webhook<br/>HMAC-SHA256 · Markdown]
+    end
 
----
+    GAS --> GM
+    GAS --> DS
+    GAS --> DT
 
-📬 [View in Gmail]()
+    style GAS fill:#0ea5e9,color:#fff,stroke:none
+    style GM fill:#6366f1,color:#fff,stroke:none
+    style DS fill:#f59e0b,color:#fff,stroke:none
+    style DT fill:#10b981,color:#fff,stroke:none
 ```
 
-## Verification Code Handling
+## ✨ Features
 
-Emails containing verification codes, activation codes, or confirmation codes are **automatically flagged 🔴 urgent**, with the code preserved verbatim in the summary.
+| # | Feature | Description |
+|:--|:--------|:------------|
+| 1 | **AI-Powered Summaries** | DeepSeek extracts 4 fields: summary, details, urgency, actions |
+| 2 | **Zero Infrastructure** | Runs on Google Cloud, no server needed |
+| 3 | **Incremental Polling** | ScriptProperties cursor — never misses an email |
+| 4 | **Signed Webhook** | HMAC-SHA256 verified delivery to DingTalk |
+| 5 | **Urgency Detection** | Emails with verification codes / activation links auto-marked 🔴 |
 
-## Advanced Usage
+## 🚀 Quick Start
 
-### Monitor Specific Labels
-
-Modify the query in `checkNewEmails()`:
-
-```javascript
-// Before: Monitor all inbox
-var query = "in:inbox after:" + …;
-
-// After: Monitor only IMPORTANT label
-var query = "label:important after:" + …;
+```bash
+# 1. Create a new Google Apps Script project
+# 2. Copy main.gs into the editor
+# 3. Set Script Properties:
+#    DEEPSEEK_API_KEY, DINGTALK_WEBHOOK, DINGTALK_SECRET
+# 4. Create a time-based trigger (every 1 minute)
 ```
 
-### Customize AI Summary Style
+## 📁 Files
 
-Modify the system prompt in `askDeepSeek()`:
-
-```javascript
-// More formal business style
-{ role: "system", content: "You are a professional assistant. Generate summaries in formal business Chinese." }
-
-// More concise style
-{ role: "system", content: "Generate a 30-character max email summary. Output directly." }
+```
+gmail-im-notify/
+├── main.gs               # Google Apps Script — all logic
+├── .env.example          # Environment variable template
+├── LICENSE               # MIT
+└── README.md / README.zh.md
 ```
 
-### Push to Multiple DingTalk Groups
+## 📄 License
 
-Add a second Webhook call at the end of `sendToDing()`.
+MIT © 2026 Ryan Dong
 
-## Roadmap
+## 🌟 Star History
 
-- [x] DingTalk push notification
-- [ ] Feishu (Lark) push notification
-- [ ] WeChat Work push notification
-- [ ] Customizable AI summary prompt templates
-- [ ] Multi-mailbox support
-- [ ] Label/tag filtering configuration
+[![Star History Chart](https://api.star-history.com/svg?repos=donglinfei-debug/gmail-im-notify&type=Date)](https://star-history.com/#donglinfei-debug/gmail-im-notify&Date)
 
-## Pricing
+## 📬 Contact
 
-| Service | Cost |
-|---------|------|
-| Google Apps Script | **Free** — 20,000 reads + 20,000 URL fetches per day |
-| DeepSeek API | ~¥0.001/call — 1 call/min ≈ ¥1/day |
-| DingTalk Robot | **Free** — max 20 messages/min |
-
-## Contact
-
-- **Email**: donglinfei@gmail.com
-
-## License
-
-MIT © [Ryan Dong](https://github.com/donglinfei-debug)
+Ryan Dong — donglinfei@gmail.com
