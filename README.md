@@ -19,6 +19,18 @@
 
 Get instant notifications when important emails hit your Gmail inbox — powered by AI summaries, delivered to DingTalk (and more IMs in the future). Built with Google Apps Script, zero infrastructure to maintain.
 
+
+## 📌 Why This?
+
+| Scenario | Pain Point | How This Solves It |
+|----------|------------|-------------------|
+| 🏢 **Busy Professionals** | Checking Gmail constantly is distracting | Get instant push notifications with AI summaries to your team chat |
+| ✈️ **Traveling / On Leave** | Easy to miss important emails | DingTalk delivers alerts to your phone immediately |
+| 🔐 **Restricted Networks** | Gmail is slow or inaccessible in some regions | Script runs on Google Cloud, notifications delivered via local IMs |
+| 👨‍👩‍👧 **Team Shared Mailbox** | Nobody wants to refresh the inbox all day | New emails auto-push to the group, everyone stays informed |
+
+**Gmail IM Notify** bridges the gap between your Gmail inbox and your instant messaging platform — powered by AI, requiring zero infrastructure on your end.
+
 ## 🏗️ Architecture
 
 ```mermaid
@@ -74,6 +86,13 @@ gmail-im-notify/
 └── README.md / README.zh.md
 ```
 
+
+
+---
+
+## 🔍 Keywords & Search Terms
+
+**IBKR options trading automation**, **Interactive Brokers Python API**, **options trading bot architecture**, **Iron Condor strategy automation**, **SPX options trading**, **IBKR API connection management**, **automated options trading system**, **TWS API Python**, **IB Gateway integration**, **options chain data fetching**, **limit order price adjustment**, **trading risk control debounce**, **Feishu bot notification**, **DingTalk webhook integration**, **Gmail AI summary notification**, **Google Apps Script Gmail monitoring**, **AI subtitle proofreading**, **ASR speech recognition**, **DeepSeek API integration**, **Alibaba Cloud fun-asr**, **subtitle generation automation**, **Claude Code planning skill**, **AI structured planning framework**, **GitHub public-prep security scan**, **open source project sanitization**, **secret detection automation**, **public repository checklist**
 ## 📄 License
 
 MIT © 2026 Ryan Dong

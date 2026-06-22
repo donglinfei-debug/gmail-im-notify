@@ -19,6 +19,18 @@
 
 收到 Gmail 新邮件即推送到钉钉，AI 自动生成摘要（一句话总结、内容简述、重要程度、待办事项）。基于 Google Apps Script，零服务器维护。
 
+
+## 📌 为什么需要这个工具？
+
+| 场景 | 痛点 | 本项目如何解决 |
+|:-----|:-----|:---------------|
+| 🏢 **职场人** | 切到 Gmail 看邮件很分散注意力 | 即时通讯推送，一眼看完摘要决定要不要处理 |
+| ✈️ **出差/休假** | 不打开 Gmail App 就会漏邮件 | 钉钉作为你已有的工作入口，邮件通知无缝接入 |
+| 🔐 **网络受限** | Gmail 在某些地区访问慢或不可用 | 脚本跑在 Google 云端，走国内即时通讯链路送达 |
+| 👨‍👩‍👧 **团队共享邮箱** | 没人想一直刷收件箱 | 新邮件自动推群，成员都能看到 |
+
+**Gmail IM Notify** 打通了 Gmail 收件箱和即时通讯之间的最后一公里——AI 驱动、零基础设施。
+
 ## 🏗️ 架构示意
 
 ```mermaid
@@ -74,6 +86,13 @@ gmail-im-notify/
 └── README.md / README.zh.md
 ```
 
+
+
+---
+
+## 🔍 搜索关键词
+
+IBKR 期权自动化交易、Interactive Brokers Python API、期权交易机器人架构、铁鹰策略自动化、SPX 期权交易、IBKR API 连接管理、TWS API Python、IB Gateway 集成、期权链数据批量获取、限价单价格调整、交易风控防抖机制、飞书 Bot 消息推送、钉钉 Webhook 集成、Gmail AI 摘要通知、Google Apps Script 邮件监控、AI 字幕校对、ASR 语音识别、DeepSeek API 集成、阿里云通义听悟 fun-asr、字幕自动生成、Claude Code 规划技能、AI 结构化规划框架、GitHub 公开仓库预处理、开源项目安全清洗、密钥自动检测、公开仓库操作清单
 ## 📄 许可证
 
 MIT © 2026 Ryan Dong
